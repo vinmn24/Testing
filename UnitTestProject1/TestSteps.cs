@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TechTalk.SpecFlow;
 
 namespace UnitTestProject1
@@ -6,22 +7,29 @@ namespace UnitTestProject1
     [Binding]
     public class TestSteps
     {
+        int no1, no2, total;
         [Given(@"I have entered (.*) into the calculator")]
-        public void GivenIHaveEnteredIntoTheCalculator(int p0)
+        public void GivenIHaveEnteredIntoTheCalculator(int number1)
         {
-            ScenarioContext.Current.Pending();
+            no1 = number1;
+        }
+        
+        [Given(@"we have also entered (.*) into the calculator")]
+        public void GivenWeHaveAlsoEnteredIntoTheCalculator(int number2)
+        {
+            no2 = number2;
         }
         
         [When(@"I press add")]
         public void WhenIPressAdd()
         {
-            ScenarioContext.Current.Pending();
+            total = no1 + no2;
         }
         
         [Then(@"the result should be (.*) on the screen")]
-        public void ThenTheResultShouldBeOnTheScreen(int p0)
+        public void ThenTheResultShouldBeOnTheScreen(int ExpectedTotal)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(total, ExpectedTotal);
         }
     }
 }
